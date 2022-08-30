@@ -11,9 +11,14 @@ const FormNewTask = ({ navigation, route }) => {
 
   const [newTask, setNewTask] = useState("");
 
-  const insertTask = (...paramTask) => {
-    const News = [...paramTask, { title: newTask, isCompleted: false }];
+  const newTarea = { title: newTask, isCompleted: false };
+
+  const insertTask = (paramTask, newTarea) => {
+    const News = [...paramTask, newTarea];
+
     setTask(News);
+    console.log(News);
+    console.log("object");
   };
 
   return (
@@ -27,7 +32,7 @@ const FormNewTask = ({ navigation, route }) => {
 
       <TouchableOpacity
         onPress={() => {
-          insertTask(...tareas);
+          insertTask(task, newTarea);
           navigation.navigate("Tareas", { tareasNew: newTask });
         }}
         style={styles.button}

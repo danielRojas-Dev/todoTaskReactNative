@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { CheckBox } from "@rneui/base";
 import { styles } from "../../assets/css/styleList";
 
-export default function ListItem({ tareita, task, id, setReload, setTask }) {
+export default function ListItem({ tareita, task, id, setTask }) {
   // console.log(tareasNew);
 
   const isCompleteed = (paramId) => {
@@ -10,7 +10,6 @@ export default function ListItem({ tareita, task, id, setReload, setTask }) {
       ? (task[paramId].isCompleted = true)
       : (task[paramId].isCompleted = false);
     // !tareasNew ? setTask(task) : setTask(tareasNew);
-    console.log(task);
   };
 
   return (
@@ -20,12 +19,11 @@ export default function ListItem({ tareita, task, id, setReload, setTask }) {
       </View>
       <View style={styles.check}>
         <CheckBox
-          checked={tareita.isCompleted}
+          checked={task[id].isCompleted}
           checkedColor="#0F0"
           onPress={() => {
-            setTask(task);
-            setReload(true);
             isCompleteed(id);
+            setTask(task);
           }}
           size={35}
           uncheckedColor="#F00"
